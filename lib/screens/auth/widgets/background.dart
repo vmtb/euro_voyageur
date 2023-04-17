@@ -1,12 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:form_validator/form_validator.dart';
-import 'package:trivo/components/app_button_round.dart';
-import 'package:trivo/components/app_input.dart';
 import 'package:trivo/components/app_text.dart';
-import 'package:trivo/utils/app_const.dart';
 import 'package:trivo/utils/app_func.dart';
 
 class Background extends ConsumerWidget {

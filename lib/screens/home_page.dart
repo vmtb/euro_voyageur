@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trivo/utils/helper_preferences.dart';
-import 'package:trivo/utils/providers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/app_const.dart';
@@ -17,15 +16,8 @@ StateProvider latProvider = StateProvider<double>((ref) => 0);
 StateProvider lngProvider = StateProvider<double>((ref) => 0);
 
 class HomePage extends ConsumerStatefulWidget {
-  final double lat;
-  final double lng;
-  final String q;
-  final Uri? uri;
-
-  HomePage(
-    this.lat,
-    this.lng, {
-    Key? key,this.q="", this.uri
+  HomePage(  {
+    Key? key,
       }) : super(key: key);
 
   @override
@@ -54,31 +46,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         allowsInlineMediaPlayback: true,
       ));
 
-  String homeUrl = "https://fruiteefy.fr";
-  String initialUrl = "https://fruiteefy.fr";
-  String fcmScript = """ \$('.fcm').val(''); """;
-  var jsGettingThings = """
-    var inp1 = document.querySelector("input[name='loginemail']");
-    var inp2 = document.querySelector("input[name='loginpassword']");
-    var btn = document.querySelector("input[type='submit']");
-    var form = document.querySelector("form");
-    //alert(inp1.getAttribute('id'));
-    inp1.addEventListener('keyup', function(e){
-       //Toaster.postMessage('username:'+inp1.value);
-       window.flutter_inappwebview.callHandler('toaster', 'username:'+inp1.value);
-    });
-      
-    inp2.addEventListener('keyup', function(e){
-       window.flutter_inappwebview.callHandler('toaster', 'password:'+inp2.value);
-    });
-""";
-
-  var jsParseThings = """
-    var inp1 = document.querySelector("input[name='loginemail']");
-    var inp2 = document.querySelector("input[name='loginpassword']");
-    inp1.value= "";
-    inp2.value= "";
-""";
+  String homeUrl = "https://heureuxvoyageur.com";
+  String initialUrl = "https://heureuxvoyageur.com";
 
   late Uri initialUri;
 
@@ -86,16 +55,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    log("q: ${widget.q}");
-    if(widget.q.isNotEmpty){
-      initialUrl = "$homeUrl/${widget.q}";
-      HelperPreferences.saveStringValue("q", "");
-      initialUri = Uri.parse(initialUrl);
-    }else if(widget.uri!=null){
-      initialUri = widget.uri!;
-    }else{
-      initialUri = Uri.parse(initialUrl);
-    }
+    initialUri = Uri.parse(initialUrl);
   }
 
 
@@ -148,14 +108,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                     final webViewInitialSettings = sharedSettings.copy();
                     webViewInitialSettings.android.cacheMode = cacheMode;
 
-                    var scrpt =
-                        """var t = document.cookie="latitude=${widget.lat}"; document.cookie="longitude=${widget.lng}";""";
 
                     return InAppWebView(
                       key: webViewKey,
                       initialUrlRequest: URLRequest(url: initialUri, iosCachePolicy: cachePolicy),
                       initialUserScripts: UnmodifiableListView<UserScript>([
-                        UserScript(source: scrpt, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
+                        //UserScript(source: scrpt, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
                       ]),
                       onProgressChanged: (controller, progress) {
                         isLoadingHere = progress < 46;
@@ -198,39 +156,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                         return NavigationActionPolicy.ALLOW;
                       },
                       onLoadStart: (controller, uri) async {
-                        log("load start");
-                        log(uri!.path);
-                        if (uri.path.contains("/S'IDENTIFIER")) {
-                          String? email = await HelperPreferences.retrieveStringValue("email");
-                          String? password = await HelperPreferences.retrieveStringValue("password");
-                          log(email);
-
-                          if(email!=null && email!=""){
-                            jsParseThings = """
-                                var inp1 = document.querySelector("input[name='loginemail']");
-                                var inp2 = document.querySelector("input[name='loginpassword']");
-                                inp1.value= "$email";
-                                inp2.value= "$password"; 
-                            """;
-                          }
-
-                          controller.addUserScripts(userScripts: [
-                            UserScript(source: jsGettingThings, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
-                            UserScript(source: jsParseThings, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
-                          ]);
-
-                          String? fcm_token = await ref.read(messaging).getToken();
-                          if (fcm_token != null) {
-                            fcmScript =
-                                """ document.querySelector(".fcm").value = "$fcm_token";  """;
-                            await controller.addUserScripts(userScripts: [
-                                UserScript(source: fcmScript, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
-                                UserScript(source: jsGettingThings, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
-                                UserScript(source: jsParseThings, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
-                            ]);
-                            log(fcmScript);
-                          }
-                        }
                       },
                       onConsoleMessage: (controller, msg) {
                         log(msg);

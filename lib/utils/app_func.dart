@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:trivo/utils/providers.dart';
 
 import '../components/app_text.dart';
 import 'app_const.dart';

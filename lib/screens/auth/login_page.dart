@@ -5,7 +5,6 @@ import 'package:form_validator/form_validator.dart';
 import 'package:trivo/screens/auth/register_page.dart';
 import 'package:trivo/screens/auth/widgets/background.dart';
 import 'package:trivo/utils/app_func.dart';
-import 'package:trivo/utils/providers.dart';
 
 import '../../components/app_button_round.dart';
 import '../../components/app_input.dart';

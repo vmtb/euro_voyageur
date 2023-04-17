@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.fr.fruiteefy">
+    package="com.vibecro.heureux_voyageur">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
    <application
-        android:label="Fruiteefy"
+        android:label="Heureux voyageur"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
 
@@ -47,7 +47,7 @@
 
             <intent-filter android:autoVerify="true">
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="fruiteefy.fr" />
+                <data android:scheme="https" android:host="heureuxvoyageur.com/" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

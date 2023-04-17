@@ -2,9 +2,9 @@
 import 'dart:convert';
 import 'dart:math' as m;
 
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:trivo/screens/home_page.dart';
 import 'package:trivo/utils/helper_preferences.dart';
@@ -68,7 +68,7 @@ Future<void> setupFlutterNotificationsCreateChannel() async {
       HelperPreferences.saveStringValue("q", q);
     }
     log(q);
-    navigateToNextPage(NavKey.navKey.currentState!.context, HomePage(0, 0, q:q ,), back: false);
+    navigateToNextPage(NavKey.navKey.currentState!.context, HomePage(), back: false);
     //Navigator.push(NavKey.navKey.currentState!.context, );
 
   });
@@ -112,7 +112,7 @@ void showFlutterNotification(RemoteMessage message) {
       q= "entraide/$user";
       HelperPreferences.saveStringValue("q", q);
     }
-    Navigator.push(NavKey.navKey.currentState!.context, MaterialPageRoute(builder: (context)=>HomePage(0, 0, q:q ,)));
+    Navigator.push(NavKey.navKey.currentState!.context, MaterialPageRoute(builder: (context)=>HomePage()));
   });
 }
 

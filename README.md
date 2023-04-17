@@ -1,6 +1,6 @@
-# trivo
+# HEUREUX VOYAGEUR
 
-Trivo Project
+Heureux Voyageur Project
 
 ## Getting Started
 
