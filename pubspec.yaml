@@ -1,0 +1,72 @@
+name: trivo
+description: Fruiteefy Flutter
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 2.5.3+27
+
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_riverpod:
+  firebase_core: ^2.0.0
+  firebase_messaging:
+  dio:
+
+  form_validator:
+  timer_controller:
+  shared_preferences: ^2.0.16
+  flutter_flushbar:
+  rflutter_alert:
+  enum_to_string:
+  google_fonts:
+  cached_network_image:
+  url_launcher: ^6.1.10
+  flutter_svg:
+
+  flutter_local_notifications: 9.8.0 
+  onboarding:
+  permission_handler:
+  geolocator:
+  flutter_inappwebview: 5.7.2+3 #6.0.0-beta.22
+  connectivity_plus:
+  uni_links:
+
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons:
+  change_app_package_name:
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/img/logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/img/logo.png
+    - assets/img/
+  #   - images/a_dot_ham.jpeg
