@@ -17,8 +17,8 @@ const String default_dummy_user_pic =
 const urlFCM = "https://char-products.store/public/fcm_xbetpay.php";
 
 class AppColor {
-  static const Color primary = Color(0xffA6CCAC);
-  static const Color secondary = Color(0xffE3B49C);
+  static const Color primary = Color(0xff37f093);
+  static const Color secondary = Color(0xff37f093);
   static const Color darkGrey = Color(0xff1657786);
   static const Color lightGrey = Color(0xffAAB8C2);
   static const Color extraLightGrey = Color(0xffE1E8ED);

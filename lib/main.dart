@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trivo/screens/home_page.dart';
+import 'package:trivo/screens/splash_page.dart';
 import 'package:trivo/utils/app_styles.dart';
 import 'package:trivo/utils/config.dart';
 import 'package:uni_links/uni_links.dart';
@@ -26,7 +27,7 @@ void main() async {
   /*Firebase initialization*/
   // await Firebase.initializeApp();
 
-  /*FCM Notifications*/
+  /* FCM Notifications*/
   // await setupFlutterNotificationsCreateChannel();
   // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   // FirebaseMessaging.onMessage.listen((RemoteMessage event) {
@@ -79,7 +80,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         Locale('en'),
         Locale('fr')
       ],
-      home: HomePage(),
+      home: const SplashPage(),
     );
   }
 }

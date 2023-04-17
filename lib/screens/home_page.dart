@@ -169,13 +169,13 @@ class _HomePageState extends ConsumerState<HomePage> {
                       onLoadError: (controller, err, error, stack) async {
                         if (!(await isNetworkAvailable())) {
                           if (!(await isPWAInstalled())) {}
-                          await controller.loadData(data: kHTMLErrorPageNotInstalled);
+                          //await controller.loadData(data: kHTMLErrorPageNotInstalled);
                         }
                       },
                       onLoadHttpError: (controller, request, error, stack) async {
                         if (!(await isNetworkAvailable())) {
                           if (!(await isPWAInstalled())) {
-                            await controller.loadData(data: kHTMLErrorPageNotInstalled);
+                            //await controller.loadData(data: kHTMLErrorPageNotInstalled);
                           }
                         }
                       },
